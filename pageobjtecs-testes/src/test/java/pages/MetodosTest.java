@@ -56,7 +56,7 @@ try {
 	/*
 	 * @author Jose Paulo
 	 * 
-	 * @param clicar
+	 * @param clicar com 
 	 */
 
 	public void clicar(By element,String descricaoPasso) throws IOException {
