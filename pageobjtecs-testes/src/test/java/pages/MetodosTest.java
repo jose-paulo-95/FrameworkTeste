@@ -2,8 +2,10 @@ package pages;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,8 +22,9 @@ public class MetodosTest {
 	 * @param abrir navegador
 	 */
 
-	public void abrirnavegador(String site, String navegador) {
-
+	public void abrirnavegador(String site, String navegador, String descricaoPasso) throws IOException {
+		
+try {
 		if (navegador == "CHROME" || navegador == "FIREFOX") {
 
 			if (navegador == "CHROME") {
@@ -37,11 +40,17 @@ public class MetodosTest {
 				driver.get(site);
 				driver.manage().window().maximize();
 
-			} else {
+			}
+		} else {
 				System.out.println("Navegador Invalido");
 			}
-
+		} catch (Exception e) {
+			Assert.fail(LocalDateTime.now() + " --erro ao tentar " + descricaoPasso);
+			screnShoot(descricaoPasso);
+			
 		}
+
+		
 	}
 
 	/*
@@ -50,8 +59,14 @@ public class MetodosTest {
 	 * @param clicar
 	 */
 
-	public void clicar(By element) {
-		driver.findElement(element).click();
+	public void clicar(By element,String descricaoPasso) throws IOException {
+		try {
+			driver.findElement(element).click();
+		} catch (Exception e) {
+			Assert.fail(LocalDateTime.now() + " --erro ao tentar " + descricaoPasso);
+			screnShoot(descricaoPasso);
+		}
+		
 	}
 
 	/*
